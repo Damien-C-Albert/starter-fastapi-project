@@ -73,3 +73,6 @@
 | Missing `include_schemas=True` | Tables duplicated | Add to `context.configure()` |
 | Manual DB edits | Broken diffs | Use migrations for all schema changes |
 | Blind autogenerate | Data loss | Review generated scripts before applying |
+
+
+## Add the changes i have made in alembic to support the async driver to connect to database

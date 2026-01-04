@@ -1,9 +1,11 @@
+from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.ext.asyncio import (
     AsyncSession,
     create_async_engine,
     async_sessionmaker,
 )
 from settings import PG_PROJECTS_URL
+
 
 # Creates engine
 engine = create_async_engine(
@@ -24,3 +26,10 @@ AsyncSessionLocal = async_sessionmaker(
 async def get_db():
     async with AsyncSessionLocal() as session:
         yield session
+
+
+# Registers db models in Base.metadata
+# Stores table name, column definitions, constraints
+class Base(DeclarativeBase):
+    __abstract__ = True
+    __table_args__ = {"schema": "starter-fastapi-project"}

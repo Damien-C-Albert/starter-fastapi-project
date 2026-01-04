@@ -43,6 +43,7 @@ if __name__ == "__main__":
 # api routers / Blueprints
 # pydantic reqeusts validation
 # loggers
+# Exception handling everywhere
 # jwt authentication
 
 # Async api

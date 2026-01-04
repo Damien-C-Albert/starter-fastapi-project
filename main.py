@@ -6,11 +6,18 @@ from sqlalchemy import text
 from core.database import get_db
 from settings import HOST, PORT
 
-def create_app():
-    # register routers
-    ...
 
-app = FastAPI()
+def create_app() -> FastAPI:
+    app = FastAPI()
+    # config cors
+    # register routers
+    return app
+
+app: FastAPI= create_app()
+
+
+# Application's Health check apis below:
+# ------------------------------------------------------------------
 
 @app.get("/health/app")
 async def app_health_check() -> str:
@@ -20,6 +27,7 @@ async def app_health_check() -> str:
 async def db_health_check(db: AsyncSession = Depends(get_db)):
     result = await db.execute(text("SELECT 1"))
     return {"db": result.scalar()}
+
 
 if __name__ == "__main__":
     uvicorn.run(
@@ -34,7 +42,6 @@ if __name__ == "__main__":
 # CORS
 # api routers / Blueprints
 # pydantic reqeusts validation
-# Alembic migration
 # loggers
 # jwt authentication
 
@@ -42,3 +49,10 @@ if __name__ == "__main__":
 # Sync api
 # AI feature api, eg. recommendations etc.
 # ML feature api
+
+# done
+# --------------------------
+# create flask app
+# dotenv configuration
+# db init setup
+# alembic migration

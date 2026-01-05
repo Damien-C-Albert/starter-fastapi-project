@@ -57,3 +57,5 @@ if __name__ == "__main__":
 # dotenv configuration
 # db init setup
 # alembic migration
+# repository layer setup
+# service layer setup

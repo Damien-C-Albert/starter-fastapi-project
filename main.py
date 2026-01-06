@@ -5,13 +5,24 @@ from sqlalchemy import text
 
 from core.database import get_db
 from settings import HOST, PORT
+from users.routers import router as users_router
 
 
 def create_app() -> FastAPI:
     app = FastAPI()
     # config cors
-    # register routers
+    register_routers(app)
     return app
+
+def register_routers(app: FastAPI):
+    """
+    Register API routers to the FastAPI application.
+    Args:
+        app (FastAPI): The FastAPI application instance.
+    """
+
+    app.include_router(users_router)
+
 
 app: FastAPI= create_app()
 
@@ -40,8 +51,6 @@ if __name__ == "__main__":
 
 # lifespan
 # CORS
-# api routers / Blueprints
-# pydantic reqeusts validation
 # loggers
 # Exception handling everywhere
 # jwt authentication
@@ -59,3 +68,6 @@ if __name__ == "__main__":
 # alembic migration
 # repository layer setup
 # service layer setup
+# router layer setup
+# Bluprint and api routers
+# Pydantic validation

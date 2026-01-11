@@ -53,6 +53,23 @@ async def get_user_by_email(
     result = await db.execute(stmt)
     return result.scalar_one_or_none()  # Return one object or None if no such user
 
-
-# Notes:
-# Try flush,refresh,rollback,commit examples
+async def get_user_by_id(
+    db: AsyncSession,
+    id: int,
+) -> User | None:
+    """
+    Retrieve a user from the database by their id.
+    This function queries the database to find a user with the specified id.
+    It performs an asynchronous database lookup using SQLAlchemy's select statement.
+    Args:
+        db (AsyncSession): An async SQLAlchemy session object for database operations.
+        id (int): The id of the user to retrieve.
+    Returns:
+        User | None: A User object if a user with the given id exists,
+                     otherwise None if no matching user is found.
+    Raises:
+        None: This function does not raise exceptions; it returns None for no matches.
+    """
+    stmt = select(User).where(User.id == id)
+    result = await db.execute(stmt)
+    return result.scalar_one_or_none()  # Return one object or None if no such user
